@@ -6,30 +6,44 @@ export default class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-    resturant: '',
+    resturantName: '',
     lists: []
   }
   }
   handleChange = (event) =>{
     // console.log(event.target.value)
-    this.setState({ resturant: event.target.value })
+    this.setState({ resturantName: event.target.value })
   
   }
   handleSubmit=(event) =>{
     event.preventDefault();
-    if(this.state.resturant != 0){
-    this.state.lists.push(this.state.resturant)}
-
+    if(this.state.resturantName != ''){
+    this.state.lists.push(this.state.resturantName)}
+    ////////
+    // localStorage.setItem('resturant', this.state.resturant);
+    // var cat = localStorage.getItem('resturant');
+    /////////
     console.log(this.state.lists)
     this.setState({
-      resturant: ''})
+      resturantName: ''})
   }
+  // when youser click in on list to delete it 
+  // new arry of list 
   handleDeleteAll=(event) =>{
   event.preventDefault();
+  console.log(this.state.lists)
   this.setState({lists: []})
   console.log(this.state.lists.length)
   }
-  
+  handlerDeleteAList=(indexDelet)=>{
+    const newLists=[...this.state.lists]
+    newLists.splice(indexDelet, 1)
+    this.setState({
+      lists:newLists,
+    })
+    
+
+  }
   render(){
     return(
       <div>
@@ -37,13 +51,13 @@ export default class App extends React.Component{
         <label>Add Your Favorite Resturant: </label>
         <input 
         type="text"
-        name="resturant"
+        name="resturantName"
         placeholder="I like ....."
-        value={this.state.resturant}
+        value={this.state.resturantName}
         onChange={this.handleChange} />
         <button  onClick={this.handleSubmit}>Submit</button>
         <button  onClick={this.handleDeleteAll}>Delete All</button>
-        <ListContainer lists={this.state.lists}/>
+        <ListContainer lists={this.state.lists} deleteAList={this.handlerDeleteAList}/>
         
       </div>
     )

@@ -10,22 +10,26 @@
   border: lightgray 1px solid;
   width: 20%;
   text-align: center;
-  margin: 0 5px;
+  margin: 7px;
 }
 
 .stars{
   display: flex;
   list-style: none;
-  
+  cursor: pointer;
 }
 .list-item-tail{
   display: flex;
   justify-content: space-between;
+
   background-color:rgb(247, 168, 118);
-  padding: 4px 0;
-  margin-top: 40px;
+ 
+  margin-top: 80px;
  
 }
 .icon {
   cursor: pointer;
+  margin-top: 15px;
+  align-items: baseline;
+ 
 }

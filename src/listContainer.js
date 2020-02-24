@@ -8,7 +8,7 @@ render(){
         return (
         <div className="list-item">
         <List key={index} resturant={resturant} />
-        <ListTail resturant={resturant}/>
+        <ListTail deleteAList={this.props.deleteAList} resturant={resturant} key={index} id={index}/>
         </div>)
     });
     return(
