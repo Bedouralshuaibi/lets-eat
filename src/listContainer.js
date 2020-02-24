@@ -2,12 +2,13 @@ import React from 'react';
 import List from './list';
 import ListTail from './list-tail';
 
+
 export default class ListContainer extends React.Component{
 render(){
     const alllists = this.props.lists.map((resturant, index) =>{
         return (
         <div className="list-item">
-        <List key={index} resturant={resturant} />
+        <List key={index} resturant={resturant} map={this.props.map}/>
         <ListTail deleteAList={this.props.deleteAList} resturant={resturant} key={index} id={index}/>
         </div>)
     });
