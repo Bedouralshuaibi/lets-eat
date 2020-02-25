@@ -3,6 +3,12 @@ import Stars from './stars';
 import { MdDeleteForever } from "react-icons/md";
 import { IoIosStarOutline } from "react-icons/io";
 import { IoIosStar } from "react-icons/io";
+import { IoIosHeartEmpty} from "react-icons/io";
+import { IoIosHeart} from "react-icons/io";
+
+
+
+
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
@@ -13,7 +19,10 @@ export default class ListTail extends React.Component
     super(props);
     this.state = {
     stars:[<IoIosStarOutline size={22}/>,<IoIosStarOutline size={22}/>,<IoIosStarOutline size={22}/>,<IoIosStarOutline size={22}/>,<IoIosStarOutline size={22}/>],
-    counter:0
+    counter:0,
+    heart: <IoIosHeartEmpty size={27}/>,
+    favFlag: false,
+    
 }
 }
     
@@ -34,7 +43,29 @@ export default class ListTail extends React.Component
         const counterPlus = starterCounter + 1;
         this.setState({counter:counterPlus});
     } 
+}
+    favClicked = (e)=>{
+        console.log("click HEART")
+        if (!this.state.favFlag)
+        {
+            console.log("click HEART IF")
+            this.setState({heart:<IoIosHeart size={27}/> ,
+                 favFlag:true,
+                })
+                // fav:[...this.state.fav]
+                // console.log(this.state.fav)
+                console.log('this.props.resturantobj', this.props.resturant)
+            this.props.heartAll(this.props.resturant)
+        } else {
+            console.log("click HEART ELSE")
+            this.setState({heart:<IoIosHeartEmpty  size={27}/> ,
+                 favFlag:false,
+                })
+
+        }
     }
+
+    
     render(){
         const allstars = this.state.stars.map((star,index)=>{
             return (
@@ -45,9 +76,9 @@ export default class ListTail extends React.Component
         return(
             <section className="list-item-tail">
             <div className="stars">
-                {allstars}
-                
+                {allstars}   
             </div>
+            <span onClick={this.favClicked} className="icon">{this.state.heart}</span>
             <span onClick={this.deleteClicked} className="icon"><MdDeleteForever size={27}/></span>
             </section>
 
