@@ -29,8 +29,10 @@ export default class Giphy extends React.Component{
 }
 render(){
     return(<dive>
-     <label>Your food mood</label>
-     <button onClick={this.giveMeMood}>click me</button>
+     <label></label>
+     <button onClick={this.giveMeMood} type="button" class="btn btn-warning">Find Your Food Mood</button>
+
+     {/* <button onClick={this.giveMeMood}>Find Your Food Mood</button> */}
       
     </dive>
 
