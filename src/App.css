@@ -1,3 +1,13 @@
+.body{
+  margin: 0 auto;
+  width: 100%;
+  padding: 5px;
+
+}
+
+.lolo{
+  width: 40%;
+}
 
 .mood-area{
   margin-bottom: 15px;
@@ -31,7 +41,7 @@ width: 100%;
 }
 .checkbox{
   float: right;
-  margin-top: -5px;;
+  margin-top: -1px;;
 }
 .footerList{
   /* display: flex; */
@@ -49,7 +59,12 @@ width: 100%;
  margin:0 auto;
  
 }
-
+.hide{
+  display: none;
+}
+.diplay {
+  display: contents;
+}
 
 /* 
 .home-page {

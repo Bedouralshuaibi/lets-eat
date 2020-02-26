@@ -24,10 +24,12 @@ export default class List extends React.Component{
              <input type="checkbox" className="checkbox" onClick={this.cheaked}></input>
              <h1>{this.props.resturant.name.charAt(0).toUpperCase() + this.props.resturant.name.slice(1)}</h1>
              <p>{this.props.resturant.cusine}</p>
+             <p>{this.props.resturant.countrySelected}</p>
              <p>{this.props.resturant.comment}</p>
+
                 <div className="footerList">
                   <span onClick={this.deleteClicked} className="icondelete"><MdDeleteForever size={27}/></span> 
-                  <ListTail heartAll={this.props.heartAll} deleteAList={this.props.deleteAList} resturant={this.props.resturant} key={this.props.index} id={this.props.index}/>
+                  <ListTail fav ={this.props.fav} notHeart ={this.props.notHeart} isFav = {this.props.isFav} heartAll={this.props.heartAll} deleteAList={this.props.deleteAList} resturant={this.props.resturant} key={this.props.index} id={this.props.index}/>
                 </div>
             </div>
 

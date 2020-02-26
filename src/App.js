@@ -1,10 +1,10 @@
 import React from "react";
 import ListContainer from "./listContainer";
 import Giphy from "./giphy";
-import A from "./a";
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.css";
 
+import "./App.css";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -12,24 +12,38 @@ export default class App extends React.Component {
     this.state = {
       resturantName: "",
       cusine: "",
-      comment:'',
+      comment: "",
       lists: [],
       resturantNameObj: {},
       img: "",
       fav: [],
-      countery: ["Saudi Arabia", "Kwaity", "Bahrain"],
-     
-
+      isFav: false,
+      countery: [
+        "Hitten",
+        "Olaya",
+        "Mohammadyah",
+        "Alnakeel",
+        "Almlqa",
+        "Alyasmen",
+        "Alsahafah",
+        "Altahlyah"
+      ],
+      selectedCountry: "Saudi Arabia",
+      class: "hide"
     };
   }
-
+  handleChangeSelect = event => {
+    // console.log(event.target.value)
+    // console.log(event.target)
+    this.setState({ selectedCountry: event.target.value });
+  };
   handleChangeRS = event => {
     // console.log(event.target.value)
     this.setState({ resturantName: event.target.value });
   };
   handleChangeCU = e => {
     console.log(e.target.value);
-    this.setState({ cusine: e.target.value })
+    this.setState({ cusine: e.target.value });
   };
   handleSubmit = event => {
     event.preventDefault();
@@ -43,14 +57,16 @@ export default class App extends React.Component {
           {
             name: this.state.resturantName,
             cusine: this.state.cusine,
-            comment:this.state.comment,
+            comment: this.state.comment,
+            countrySelected: this.state.selectedCountry
           }
         ],
         resturantName: "",
         cusine: "",
-        comment:"",
+        comment: "",
         checkedToDelet: "false",
         delete: [],
+        countrySelected: "Saudi Arabia"
       });
     }
   };
@@ -81,16 +97,11 @@ export default class App extends React.Component {
     });
   };
   handleDeleteSelected = () => {
-    console.log(this.state.delete.length);
     const newarr = [...this.state.lists];
     this.state.delete.map(restdel => {
-      console.log(restdel);
-      console.log(this.state.lists);
       this.state.lists.map(restlist => {
         console.log(restlist);
         if (restdel.name === restlist.name && (this.state.selected = true)) {
-          console.log("match");
-          // const newarr = [...this.state.lists]
           let index = newarr.indexOf(restlist);
           console.log(index);
           newarr.splice(index, 1);
@@ -102,9 +113,13 @@ export default class App extends React.Component {
     });
     this.setState({ lists: newarr, delete: [] });
   };
-  map = () => {
-    window.open("https://www.google.com/maps");
+  favAllDisplay = () => {
+    this.setState({ class: "display" });
   };
+  favAllDisplay2 = () => {
+    this.setState({ class: "hide" });
+  };
+
   giveMeMood = url => {
     this.state.img = url;
   };
@@ -116,24 +131,45 @@ export default class App extends React.Component {
     console.log(obj);
     const newfav = [...this.state.fav];
     newfav.push(obj);
-    this.setState({ fav: newfav });
+    this.setState({ fav: newfav, isFav: true });
   };
-  textArea = (e)=>{
-    this.setState({comment:e.target.value})
-    console.log(this.state.comment)
-  }
-  counterySl = (e)=>{
-    this.setState({setState:e.target.value})
-  }
+  notHeart = res => {
+    if (this.state.fav.length > 0 && this.state.isFav === true) {
+      const newarr = [...this.state.fav];
+      this.state.fav.map(lis => {
+        console.log(res.name);
+        console.log(lis.name);
+
+        if (res.name === lis.name) {
+          console.log("h44");
+          let index = newarr.indexOf(res);
+          console.log(index);
+          console.log("h2");
+          newarr.splice(index, 1);
+          console.log(newarr.length);
+        }
+      });
+
+      this.setState({ fav: newarr, isFav: false });
+    }
+  };
+  textArea = e => {
+    this.setState({ comment: e.target.value });
+    console.log(this.state.comment);
+  };
+  counterySl = e => {
+    this.setState({ setState: e.target.value });
+  };
   render() {
-    const allCont=this.state.countery.map((cont, index) => {
-      return (<option value={cont} 
-              checked={this.state.countery === this.value}>
-              {index+1}. {cont}
-            </option>)
-            // selected
+    const allCont = this.state.countery.map((cont, index) => {
+      return (
+        <option value={cont} checked={this.state.countery === this.value}>
+          {index + 1}. {cont}
+        </option>
+      );
+      // selected
     });
-    
+
     return (
       <div className="jumbotron text-center">
         <h1>Let's Eat</h1>
@@ -146,6 +182,7 @@ export default class App extends React.Component {
           <br />
           <Giphy imgto={this.imgtoApper} /> <br />
         </div>
+        
         <div className="form">
           {/* <label>Add Your Favorite Resturant: </label>
         <input 
@@ -168,7 +205,6 @@ export default class App extends React.Component {
             />
           </div>
           <label>Cousine : </label>
-
           <div class="form-check">
             <input
               onChange={this.handleChangeCU}
@@ -177,13 +213,12 @@ export default class App extends React.Component {
               name="exampleRadios"
               id="exampleRadios1"
               value="Arabic Food"
-              checked={this.state.cusine === 'Arabic Food'}
+              checked={this.state.cusine === "Arabic Food"}
             />
             <label class="form-check-label" for="exampleRadios1">
-              Arabic 
+              Arabic
             </label>
           </div>
-
           <div class="form-check">
             <input
               onChange={this.handleChangeCU}
@@ -192,13 +227,12 @@ export default class App extends React.Component {
               name="exampleRadios"
               id="exampleRadios1"
               value="Aisan Food"
-              checked={this.state.cusine === 'Aisan Food'}
+              checked={this.state.cusine === "Aisan Food"}
             />
             <label class="form-check-label" for="exampleRadios1">
-               Aisan
+              Aisan
             </label>
           </div>
-
           <div class="form-check">
             <input
               onChange={this.handleChangeCU}
@@ -207,13 +241,12 @@ export default class App extends React.Component {
               name="exampleRadios"
               id="exampleRadios1"
               value="Indain Food "
-              checked={this.state.cusine === 'Indain Food '}
+              checked={this.state.cusine === "Indain Food "}
             />
             <label class="form-check-label" for="exampleRadios1">
-            Indain 
+              Indain
             </label>
           </div>
-          
           <div class="form-check">
             <input
               onChange={this.handleChangeCU}
@@ -222,13 +255,12 @@ export default class App extends React.Component {
               name="exampleRadios"
               id="exampleRadios1"
               value="Italian Food "
-              checked={this.state.cusine === 'Italian Food '}
+              checked={this.state.cusine === "Italian Food "}
             />
             <label class="form-check-label" for="exampleRadios1">
-            Italian 
+              Italian
             </label>
           </div>
-
           <div class="form-check">
             <input
               onChange={this.handleChangeCU}
@@ -237,13 +269,12 @@ export default class App extends React.Component {
               name="exampleRadios"
               id="exampleRadios1"
               value="Fast Food "
-              checked={this.state.cusine === 'Fast Food '}
+              checked={this.state.cusine === "Fast Food "}
             />
             <label class="form-check-label" for="exampleRadios1">
-            Fast Food
+              Fast Food
             </label>
           </div>
-
           <div class="form-check">
             <input
               onChange={this.handleChangeCU}
@@ -252,25 +283,31 @@ export default class App extends React.Component {
               name="exampleRadios"
               id="exampleRadios1"
               value="Coffee Shop"
-              checked={this.state.cusine === 'Coffee Shop'}
+              checked={this.state.cusine === "Coffee Shop"}
             />
             <label class="form-check-label" for="exampleRadios1">
-            Coffee Shop 
+              Coffee Shop
             </label>
           </div>
-          
-{/* RRTR:{allCont} */}
-        
-           <select id="countySel" size="1"  >
-          {allCont} </select>
-          {console.log(allCont)}
-           <br/>
-         
-           
+          {/* RRTR:{allCont} */}
+          <select
+            id="countySel"
+            size="1"
+            value={this.state.selectedCountry}
+            onChange={this.handleChangeSelect}
+          >
+            {allCont}
+          </select>
+          {/* {console.log(a)} */}
+          <br />
           {/* <label>location</label><button onClick={this.map}>find my resturant</button><br/> */}
-          
-          <label>Comments :</label><br/>
-          <textarea onChange={this.textArea} value={this.state.comment}></textarea> <br/>
+          <label>Comments :</label>
+          <br />
+          <textarea
+            onChange={this.textArea}
+            value={this.state.comment}
+          ></textarea>{" "}
+          <br />
           <button
             onClick={this.handleSubmit}
             type="submit"
@@ -279,10 +316,14 @@ export default class App extends React.Component {
             Submit
           </button>
           <br />
-
           <button onClick={this.handleDeleteAll}>Delete All</button>
           <button onClick={this.handleDeleteSelected}>Delete </button>
-          <button onClick={this.favAllDisplay}>view All Favorites</button>
+          <button type="button" value="Click" onClick={this.favAllDisplay}>
+            View All Favorites
+          </button>
+          <button type="button" value="Click" onClick={this.favAllDisplay2}>
+            Hid All Favorites
+          </button>
           <br />
         </div>
         <div>
@@ -291,20 +332,60 @@ export default class App extends React.Component {
             deleteSelected={this.deleteSelected}
             deleteAList={this.handlerDeleteAList}
             heartAll={this.favAll}
-            googlemap={this.map}
+            fav={this.fav}
+            notHeart={this.notHeart}
+            isFav={this.isFav}
           />
         </div>
 
         <hr />
-        <h3>My Favs</h3>
-        <ListContainer
-          lists={this.state.fav}
-          deleteSelected={this.deleteSelected}
-          deleteAList={this.handlerDeleteAList}
-          heartAll={this.favAll}
-          googlemap={this.map}
-        />
+        <div className={this.state.class}>
+          <h3>My Favs</h3>
+          <ListContainer
+            lists={this.state.fav}
+            deleteSelected={this.deleteSelected}
+            deleteAList={this.handlerDeleteAList}
+            heartAll={this.favAll}
+            favVeiw={this.favVeiw}
+            fav={this.fav}
+            notHeart={this.notHeart}
+            isFav={this.isFav}
+          />
+        </div>
       </div>
     );
   }
 }
+
+
+// <div class="body"><h1>Let's Eat</h1>
+//     <Form className="lolo" >
+//           <Form.Group controlId="exampleForm.ControlInput1">
+//             <Form.Label>Email address</Form.Label>
+//             <Form.Control type="email" placeholder="name@example.com" />
+//           </Form.Group>
+//           <Form.Group controlId="exampleForm.ControlSelect1">
+//             <Form.Label>Example select</Form.Label>
+//             <Form.Control as="select">
+//               <option>1</option>
+//               <option>2</option>
+//               <option>3</option>
+//               <option>4</option>
+//               <option>5</option>
+//             </Form.Control>
+//           </Form.Group>
+//           <Form.Group controlId="exampleForm.ControlSelect2">
+//             <Form.Label>Example multiple select</Form.Label>
+//             <Form.Control as="select" multiple>
+//               <option>1</option>
+//               <option>2</option>
+//               <option>3</option>
+//               <option>4</option>
+//               <option>5</option>
+//             </Form.Control>
+//           </Form.Group>
+//           <Form.Group controlId="exampleForm.ControlTextarea1">
+//             <Form.Label>Example textarea</Form.Label>
+//             <Form.Control as="textarea" rows="3" />
+//           </Form.Group>
+//         </Form> 
