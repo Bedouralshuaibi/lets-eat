@@ -1,10 +1,6 @@
 .body{
-  /* margin: 0 auto;
-  width: 100%;
-  padding: 5px; */
-  /* background-image: #ffffff url('geometry2.png') */
+  
   background-image: url('geometry2.png');
-
 }
 /* .formGroupExampleInput{
   width:50%;
@@ -12,7 +8,10 @@
 .lolo{
   width: 40%;
 }
-
+.form-group{
+  margin: 0 100px 0 100px ;
+  padding: 5px;
+}
 .mood-area{
   margin-bottom: 15px;
 }
