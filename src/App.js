@@ -164,7 +164,7 @@ export default class App extends React.Component {
     this.setState({ setState: e.target.value });
   };
   render() {
-    const alldistrict = this.state.district.map((cont, index) => {
+    const allDistrict = this.state.district.map((cont, index) => {
       return (
         <option value={cont} checked={this.state.district === this.value}>
           {index + 1}. {cont}
@@ -327,7 +327,7 @@ export default class App extends React.Component {
           <button type="button" value="Click" onClick={this.favAllDisplay2}>
             Hid All Favorites
           </button>
-          <br />
+          <br /><br /><br />
         </div>
         <div>
           <ListContainer
