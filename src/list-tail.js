@@ -56,7 +56,7 @@ export default class ListTail extends React.Component {
       console.log("click Not HEART ");
       this.props.notHeart(this.props.resturant)
       console.log(this.props.resturant)
-      // this.setState({ heart: <IoIosHeartEmpty size={27} />, favFlag:false });
+      this.setState({ heart: <IoIosHeartEmpty size={27} />, favFlag:false });
 
       
     }

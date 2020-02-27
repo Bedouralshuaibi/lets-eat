@@ -31,6 +31,22 @@
 
 ![wireframe](wairfram.png)
 
+##### User Story : 
+
+### User Stories
+
+* As a user, I should be able to add a new resturant
+* As a user, I should be able to click on an resturan and do : 
+
+  * rate it
+  * favourite
+  * delete it 
+
+* As a user, I should be select added resturant abd delete them
+* As a user, I should disply favourite list and hid it
+* As a user, I can generate a random giphy each time 
+
+
 ##### Development Process
 
 First start the propject with wairefram to make a clear picture in the mind how many component the app needs. 
@@ -43,8 +59,3 @@ The start with coding in React to make a list and do some of the functionality t
 * view favorite list
 
 after that, add the Ghiy gits to the page. it generate a random pic related to the food by every click.
-
-
-
-
-

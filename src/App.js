@@ -173,8 +173,8 @@ export default class App extends React.Component {
       // selected
     });
 
-    return (
-      <div className="jumbotron text-center">
+    return (<div className="body">
+      <div className=" text-center">
         <h1>Let's Eat</h1>
         <div className="mood-area">
           <img
@@ -292,7 +292,9 @@ export default class App extends React.Component {
               Coffee Shop
             </label>
           </div>
+          <br/> 
           {/* RRTR:{allCont} */}
+          <label>Where in Riyadh: </label>
           <select
             id="distictSel"
             size="1"
@@ -302,7 +304,7 @@ export default class App extends React.Component {
             {allDistrict}
           </select>
           {/* {console.log(a)} */}
-          <br />
+          <br /><br/> 
           {/* <label>location</label><button onClick={this.map}>find my resturant</button><br/> */}
           <label>Comments :</label>
           <br />
@@ -319,12 +321,12 @@ export default class App extends React.Component {
             Submit
           </button>
           <br />
-          <button onClick={this.handleDeleteAll}>Delete All</button>
-          <button onClick={this.handleDeleteSelected}>Delete </button>
-          <button type="button" value="Click" onClick={this.favAllDisplay}>
+          <button className="btn btn-secondary" onClick={this.handleDeleteAll}>Delete All</button>{' '}
+          <button onClick={this.handleDeleteSelected}  class="btn btn-warning">Delete </button>{' '}
+          <button className="btn btn-secondary" type="button" value="Click" onClick={this.favAllDisplay}>
             View All Favorites
-          </button>
-          <button type="button" value="Click" onClick={this.favAllDisplay2}>
+          </button> {' '}
+          <button  className="btn btn-warning" type="button" value="Click" onClick={this.favAllDisplay2}>
             Hid All Favorites
           </button>
           <br /><br /><br />
@@ -355,6 +357,7 @@ export default class App extends React.Component {
             isFav={this.isFav}
           />
         </div>
+      </div>
       </div>
     );
   }
