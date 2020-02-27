@@ -24,7 +24,7 @@ export default class List extends React.Component{
              <input type="checkbox" className="checkbox" onClick={this.cheaked}></input>
              <h1>{this.props.resturant.name.charAt(0).toUpperCase() + this.props.resturant.name.slice(1)}</h1>
              <p>{this.props.resturant.cusine}</p>
-             <p>{this.props.resturant.countrySelected}</p>
+             <p>{this.props.resturant.districtSelected}</p>
              <p>{this.props.resturant.comment}</p>
 
                 <div className="footerList">

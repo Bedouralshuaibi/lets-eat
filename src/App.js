@@ -18,17 +18,20 @@ export default class App extends React.Component {
       img: "",
       fav: [],
       isFav: false,
-      countery: [
+      district: [
         "Hitten",
-        "Olaya",
         "Mohammadyah",
         "Alnakeel",
+        "Olaya",
+        "Almaazer",
         "Almlqa",
         "Alyasmen",
         "Alsahafah",
-        "Altahlyah"
+        "Altahlyah",
+        "Almueuj",
+        "Alaqiq",
       ],
-      selectedCountry: "Saudi Arabia",
+      selectedDistrict: "Saudi Arabia",
       class: "hide"
     };
   }
@@ -58,7 +61,7 @@ export default class App extends React.Component {
             name: this.state.resturantName,
             cusine: this.state.cusine,
             comment: this.state.comment,
-            countrySelected: this.state.selectedCountry
+            districtSelected: this.state.selectedDistrict
           }
         ],
         resturantName: "",
@@ -134,7 +137,7 @@ export default class App extends React.Component {
     this.setState({ fav: newfav, isFav: true });
   };
   notHeart = res => {
-    if (this.state.fav.length > 0 && this.state.isFav === true) {
+    if (this.state.fav.length > 0 ) {
       const newarr = [...this.state.fav];
       this.state.fav.map(lis => {
         console.log(res.name);
@@ -157,13 +160,13 @@ export default class App extends React.Component {
     this.setState({ comment: e.target.value });
     console.log(this.state.comment);
   };
-  counterySl = e => {
+  districtSl = e => {
     this.setState({ setState: e.target.value });
   };
   render() {
-    const allCont = this.state.countery.map((cont, index) => {
+    const alldistrict = this.state.district.map((cont, index) => {
       return (
-        <option value={cont} checked={this.state.countery === this.value}>
+        <option value={cont} checked={this.state.district === this.value}>
           {index + 1}. {cont}
         </option>
       );
@@ -291,12 +294,12 @@ export default class App extends React.Component {
           </div>
           {/* RRTR:{allCont} */}
           <select
-            id="countySel"
+            id="distictSel"
             size="1"
-            value={this.state.selectedCountry}
+            value={this.state.selectedDistrict}
             onChange={this.handleChangeSelect}
           >
-            {allCont}
+            {allDistrict}
           </select>
           {/* {console.log(a)} */}
           <br />

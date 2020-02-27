@@ -1,10 +1,10 @@
-## Resturant Favorite Application
+## Restaurant Favorite Application
 
 ------
 
 ### Overview
 
-* since Riyadh has so much resturants that some times you can not remember what/where your favourite resturant.
+* since Riyadh has so much restaurants that some times you can not remember what/where your favourite resturant.
 * So this app provid you  with a fourm page that you can fill it and submit it. 
 * Then, user can view his/her favorite resturant, rate it, make favorite list and delete it .
 
@@ -20,6 +20,31 @@
 ------
 
 #### List of technologies used
+
+* JavaScript, CSS, HTML
+* Bootstrab
+* React
+* Axios, Jason, Ajax
+* API
+
+##### Wireframe
+
+![wireframe](wairfram.png)
+
+##### Development Process
+
+First start the propject with wairefram to make a clear picture in the mind how many component the app needs. 
+The start with coding in React to make a list and do some of the functionality the list has like :
+
+* add
+* delete 
+* Rateing 
+* add to favorite
+* view favorite list
+
+after that, add the Ghiy gits to the page. it generate a random pic related to the food by every click.
+
+
 
 
 
