@@ -10,7 +10,7 @@
 
 #### Table of Countenet
 
-1. Tist of technologies used
+1. List of technologies used
 2. User story
 3. Wireframe
 4. Development process
